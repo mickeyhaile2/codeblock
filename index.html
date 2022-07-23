@@ -1,43 +1,30 @@
 <html>    
 <p>my code block html</p>
  <ul id="list"></ul>
+<button id="links">display links</button>
+
  <script>   
-    var names;
-
-function randomInt(n) {
-  // Return a random number from in [0, n[
-  return Math.floor(Math.random()*n);
-}
-
-function randomMember(arr) {
-  // Return a random member of the array
-  return arr[randomInt(arr.length)]
-}
+var links, names;
 
 
-names = ['CYF', 'facebook', 'codepen', 'youtube', 'gurdian', 'google'];
-while (!!!names.length) {
-  if(--window.LoopTrap <= 0) throw "Infinite loop.";
+
+document.getElementById('links').addEventListener('click', (event) => {
+  links = ['https://www.theguardian.com/uk', 'https://www.youtube.com/results?search_query=visual+studio+2022', 'https://edu.google.com/intl/ALL_uk/workspace-for-education/classroom/'];
+  names = ['gurdian', 'youtube', 'google'];
   let element_list = document.getElementById('list');
-  let new_li = document.createElement('li');
-  let new_a = document.createElement('a');
-  new_a.setAttribute("href", randomMember(names));
-  new_a.innerText = randomMember(names);
+  while (!!links.length) {
+    if(--window.LoopTrap <= 0) throw "Infinite loop.";
+    let new_li = document.createElement('li');
+    let new_a = document.createElement('a');
+    new_a.setAttribute("href", links.shift());
+    new_a.innerText = names.shift();
 
-  new_li.appendChild(new_a);
+    new_li.appendChild(new_a);
 
-  element_list.appendChild(new_li);
-}
+    element_list.appendChild(new_li);
+  }
 
-let element_list2 = document.getElementById('list');
-let new_li2 = document.createElement('li');
-let new_a2 = document.createElement('a');
-new_a2.setAttribute("href", 'https://slack.com/intl/en-gb/help/articles/205138367-Troubleshoot-connection-issues#netlogs');
-new_a2.innerText = 'slack';
-
-new_li2.appendChild(new_a2);
-
-element_list2.appendChild(new_li2);
+});
 
  </script>   
 </html>
